@@ -12,7 +12,7 @@ var strMsg = '{"Engine Status":"'+statestatus+'"}'
 
 function setupMQTT() {
 /*ESTABLISH MQTT CONNECTION*/
-client = mqtt.connect('ssl://mqtt.covapp.io:8883',
+client = mqtt.connect('ssl://xx.xxx.xx:8883',
             {
                   keepalive: 10, 
                   clientId: '275DFC8E1Cb248018cf1',
