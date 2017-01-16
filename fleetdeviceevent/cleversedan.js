@@ -1,26 +1,33 @@
 var mqtt    = require('mqtt');
+var config = require('./MQTTInfo2.json');
 
 var client;
-var deviceId = 'e82a9878-489e-40d3-8d9c-c5bdcc7bbcdd';
-var consumerTopic = '3c8073c9-b07c-4ca2-8322-a884a3c049a4';
-var producerTopic = 'cf2ec4c2-de54-4d30-9524-c661e182097a';
-var engineEventID = '71a0d3cb-e228-47f6-b446-76a5beab2478';
-var appcommandID = 'b57e3426-6b8e-4a75-a826-a0885c014c0d';
-var statestatus = '0';
+var deviceId = "42ba1baf-d13c-4efc-9668-7558c51b9a81";
+console.log(deviceId);
+var consumerTopic = '7c056739-b5fd-4463-a6b5-ce9d27fe756d';
+var producerTopic = 'b7054366-0bf3-47dd-8adf-edac2f663033';
+var clientID = 'a2778e03E1a24903B41a';
+var mqttUserName =  '45d6e8fc-28f2-473c-8daf-2267326b5b79';
+var mqttPassword =  '559815dd-a318-4848-ab6d-721df45653ed';
+var alertID = config.alertID;;
+var statusID = config.statusEventID;
+//var appcommandID = '039e88d7-1026-4121-a928-d171d90bae72';
+// var statestatus = '1';
 //var strMsg = {Engine Status:statestatus};
-var strMsg = '{"Engine Status":"'+statestatus+'"}'
+// var strMsg = '{"DigitalName6":"'+statestatus+'"}';
+var statusStr = '{"AnalogName6":"Tirepressure", "AnalogValue6": "42", "AnalogName5": "playerID","AnalogValue5":"da0a2e09-aa7f-47dd-aaa2-430d0b0b5e8f"}' ;
 
 function setupMQTT() {
 /*ESTABLISH MQTT CONNECTION*/
-client = mqtt.connect('ssl://xx.xxx.xx:8883',
+client = mqtt.connect('ssl://mqtt.covapp.io:8883',
             {
                   keepalive: 10, 
-                  clientId: '275DFC8E1Cb248018cf1',
+                  clientId: clientID,
                   clean: true,
                   protocolId: 'MQTT',
                   connectTimeout: 30 * 1000,
-                  username: 'ae987bd2-75c2-4453-8c25-bc588fb5a7f6',
-                  password: '786420bf-abd5-4ee6-8e15-2dc81b5a3303'            });
+                  username: mqttUserName,
+                  password: mqttPassword            });
 
 client.on('connect', function () {
             console.log('MQTT Connection Successful');
@@ -34,12 +41,15 @@ client.on('message', function (topic, message) {
             console.log(message.toString());
             var jsonStatusObj = JSON.parse(message.toString());
             var decodedPayload = new Buffer(jsonStatusObj.message, 'base64');
+            //if (jsonStatusObj.deviceId != "2e497bd8-d172-425f-ae43-047ae0c036cd"){
             console.log("DeviceID: %s Payload: %s", jsonStatusObj.deviceId, decodedPayload.toString());
-            
+            //}
+            //statusStr = '{"DigitalName6":"engine", "DigitalValue6":"1","DigitalName2":"door", "DigitalValue2": "0", "DigitalName3":"honk", "DigitalValue3": "0", "DigitalName4":".", "DigitalValue4": "0","DigitalName5":"beacon", "DigitalValue5": "1"}';
+            //publishMessage(statusID,statusStr);  
 
         });  
 
-publishMessage(engineEventID,strMsg);
+//publishMessage(statusID,statusStr);
 //console.log("published message complete");        
 }
 
