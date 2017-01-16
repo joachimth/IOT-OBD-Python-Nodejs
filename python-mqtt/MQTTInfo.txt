@@ -1,0 +1,13 @@
+{
+	"clientID": "32a4ED48A296430c9d46",
+	"host": "mqtt.covapp.io",
+	"port": 8883,
+	"username": "c7b791f4-f74f-4009-826c-612d2b7086a9",
+	"password": "0d5ad33f-0bd5-49a3-b6a7-010ca013d887",
+	"consumerTopic": "aeff4623-6533-4876-a35c-2096b720cb1c",
+	"producerTopic": "0b0ac96e-91f8-4630-900b-affdb2fa85ec",
+	"deviceID": "c41f9d60-9dfa-4dc2-b877-89fbf9ac8dd0",
+	"eventID": "cc2a20e8-27d1-4b83-82ad-5b91d2fab317",
+	"fuelLvl": 70,
+	"coolantLvl": 80
+}

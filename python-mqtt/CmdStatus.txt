@@ -1,0 +1,1 @@
+{"Door":"1","Engine":"0","Trouble":"0","Gear":"0","Tire":"16","Oil":"23"}
